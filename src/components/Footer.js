@@ -7,7 +7,7 @@ import FitnessCenter from '@material-ui/icons/FitnessCenter';
 export const Footer = () => {
     return (
         <div>
-            <BottomNavigation>
+            <BottomNavigation style={{ backgroundColor: 'inherit'}}>
                 <BottomNavigationAction label='test' icon={<FitnessCenter/>} />
             </BottomNavigation>
         </div>

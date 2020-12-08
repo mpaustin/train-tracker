@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import store from './redux/index';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from "react-router-dom";
 
 const theme = createMuiTheme();
 
@@ -13,7 +14,9 @@ ReactDOM.render(
   <ThemeProvider theme={theme} >
     <Provider store={store}>
       <React.StrictMode>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </React.StrictMode>
     </Provider>
   </ThemeProvider>,

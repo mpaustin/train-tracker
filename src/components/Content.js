@@ -32,7 +32,9 @@ export const Content = () => {
     return (
         <div>
             <Box height='100%' width='100%' display='flex' flexDirection='column' justifyContent='center'>
-                Your Workouts
+                <h4>
+                   Your Workouts 
+                </h4>
                 <Table 
                     columnTitles={columnTitles}
                     rows={rows}

@@ -9,9 +9,10 @@ const useStyles = makeStyles({
     },
     table: {
         maxWidth: 750,
-        margin: '30px auto 30px',
+        margin: '0 auto 30px',
         alignSelf: 'center',
         border: '2px solid black',
+        boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)'
     },
     tableHead: {
         backgroundColor: 'black',
