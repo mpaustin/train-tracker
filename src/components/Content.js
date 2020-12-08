@@ -1,9 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Table from './Table';
-import { Box, TableCell } from '@material-ui/core';
+import Login from './Login';
+import { Box, TableCell, Button } from '@material-ui/core';
+import { BrowserRouter, Route, Link, Switch, Redirect } from "react-router-dom";
 
-export const Content = () => {
+export const Content = (props) => {
+
+    const [open, setOpen] = React.useState(false);
+
+    const { user, workouts } = props;
 
     let columnTitles = [
         <TableCell style={{ color: 'white'}}>Date</TableCell>,
@@ -29,25 +35,61 @@ export const Content = () => {
         ],
     ]
 
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    console.log('Content user', user);
+
     return (
         <div>
             <Box height='100%' width='100%' display='flex' flexDirection='column' justifyContent='center'>
-                <h4>
-                   Your Workouts 
-                </h4>
-                <Table 
-                    columnTitles={columnTitles}
-                    rows={rows}
-                />
+                <Switch>
+                    <Route 
+                        exact
+                        path={'/'}
+                    >
+                        <Redirect to={'/home'}/>
+                    </Route>
+                    <Route
+                        path={'/home'}
+                    >
+                        <Box height='90vh' margin='30px 25% 30px' >
+                            {
+                                user ?
+                                <>
+                                    <h4>
+                                        {user}'s Workouts 
+                                    </h4>
+                                    <Table 
+                                        columnTitles={columnTitles}
+                                        rows={rows}
+                                    />
+                                </>
+                                :
+                                <Login/>
+                            }
+                        </Box>
+                    </Route>
+                    <Route
+                        path={'/login'}
+                    >
+                        
+                    </Route>
+                </Switch>
             </Box>
             
         </div>
     )
 }
 
-const mapStateToProps = (state) => ({
-    
-})
+const mapStateToProps = (state) => {
+    return {
+        state: state,
+        user: state.users.user,
+        workouts: state.workouts.workouts,
+    }
+};
 
 const mapDispatchToProps = {
     

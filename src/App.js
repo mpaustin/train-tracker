@@ -5,7 +5,6 @@ import Content from './components/Content';
 import Footer from './components/Footer';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import { BrowserRouter, Route, Link, Switch, Redirect } from "react-router-dom";
 
 const useStyles = makeStyles({
     theme: {
@@ -19,29 +18,7 @@ function App() {
     <div className="App">
       <Box height='100vh' width='100%' display='flex' flexDirection='column' justifyContent='space-between' >
         <Box className={classes.theme} ><ToolBar/></Box>
-          <Switch>
-            <Route 
-              exact
-              path={'/'}
-            >
-              <Redirect to={'/workouts'}/>
-            </Route>
-            <Route
-              path={'/workouts'}
-            >
-              <Box height='90vh' margin='30px 25% 30px' ><Content/></Box>
-            </Route>
-            <Route
-              path={'/login'}
-            >
-              Login
-            </Route>
-            <Route
-              path={'/test'}
-            >
-              Test
-            </Route>
-          </Switch>
+        <Box height='90vh' margin='30px 25% 30px' ><Content/></Box>
         <Box className={classes.theme} ><Footer/></Box>
       </Box>
     </div>
