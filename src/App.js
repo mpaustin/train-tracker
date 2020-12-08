@@ -1,7 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Toolbar from './components/Toolbar';
+import Toolbar from './components/ToolBar';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import Box from '@material-ui/core/Box';

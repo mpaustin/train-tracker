@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import Table from './Table';
 import { Box, TableCell } from '@material-ui/core';
 
-export const content = () => {
+export const Content = () => {
 
     let columnTitles = [
         <TableCell style={{ color: 'white'}}>Date</TableCell>,
@@ -51,4 +51,4 @@ const mapDispatchToProps = {
     
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(content)
+export default connect(mapStateToProps, mapDispatchToProps)(Content)

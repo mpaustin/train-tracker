@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import TwitterIcon from '@material-ui/icons/Twitter';
 
-export const footer = () => {
+export const Footer = () => {
     return (
         <div>
             <BottomNavigation>
@@ -22,4 +22,4 @@ const mapDispatchToProps = {
     
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(footer)
+export default connect(mapStateToProps, mapDispatchToProps)(Footer)

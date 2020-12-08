@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import Toolbar from '@material-ui/core/Toolbar';
 
-export const toolbar = () => {
+export const ToolBar = () => {
     return (
         <div>
             <Toolbar>
@@ -20,4 +20,4 @@ const mapDispatchToProps = {
     
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(toolbar)
+export default connect(mapStateToProps, mapDispatchToProps)(ToolBar)
