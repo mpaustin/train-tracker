@@ -10,9 +10,9 @@ function App() {
   return (
     <div className="App">
       <Box height='100vh' width='100%' display='flex' flexDirection='column' justifyContent='space-between' >
-        <Toolbar/>
-        <Content/>
-        <Footer/>
+        <Box><Toolbar/></Box>
+        <Box height='90vh'><Content/></Box>
+        <Box><Footer/></Box>
       </Box>
     </div>
   );

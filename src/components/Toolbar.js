@@ -6,7 +6,7 @@ export const toolbar = () => {
     return (
         <div>
             <Toolbar>
-                Toolbar
+                Train Tracker
             </Toolbar>
         </div>
     )
