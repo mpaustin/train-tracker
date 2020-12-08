@@ -15,13 +15,13 @@ export const ToolBar = () => {
     return (
         <div>
             <Toolbar>
-                <Box width='100%' display='flex' flexDirection='row' justifyContent='space-between' >
+                <Box width='100%' display='flex' flexDirection='row' justifyContent='space-between' alignItems='center'>
                     <Box>
                         <h2>
                            Train Tracker 
                         </h2>
                     </Box>
-                    <Box alignItems='center'>
+                    <Box>
                         Login
                     </Box>
                 </Box>
