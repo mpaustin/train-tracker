@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Toolbar from './components/ToolBar';
+import ToolBar from './components/ToolBar';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import Box from '@material-ui/core/Box';
@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Box height='100vh' width='100%' display='flex' flexDirection='column' justifyContent='space-between' >
-        <Box className={classes.theme} ><Toolbar/></Box>
+        <Box className={classes.theme} ><ToolBar/></Box>
           <Switch>
             <Route 
               exact
