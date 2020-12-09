@@ -4,6 +4,13 @@ import { Box } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { logIn } from '../redux/actions/users';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+    loginFields: {
+        margin: '1rem',
+    }
+});
 
 export const Login = (props) => {
 
@@ -12,9 +19,9 @@ export const Login = (props) => {
     const [password, setPassword] = React.useState('');
 
     const { logIn } = props;
+    const classes = useStyles();
 
     const handleSubmit = () => {
-        console.log('Attempting to log in...')
         logIn({
             username,
             password,
@@ -26,7 +33,7 @@ export const Login = (props) => {
             <Box>
               Please log in to continue.  
             </Box>
-            <Box>
+            <Box className={classes.loginFields}>
                 <TextField
                     autofocus
                     id='username'
@@ -36,7 +43,7 @@ export const Login = (props) => {
                     // onChange={}
                 /> 
             </Box>
-            <Box>
+            <Box className={classes.loginFields}>
                 <TextField
                     id='password'
                     label='Password'
@@ -46,7 +53,7 @@ export const Login = (props) => {
                 /> 
             </Box>
             <Box>
-                <Button onClick={handleSubmit} color='primary' >Submit</Button>
+                <Button onClick={handleSubmit} color='inherit' variant='outlined' >Submit</Button>
             </Box>
         </Box>
     )
