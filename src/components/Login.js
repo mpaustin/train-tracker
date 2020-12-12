@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Box } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
@@ -21,11 +21,32 @@ export const Login = (props) => {
     const { logIn } = props;
     const classes = useStyles();
 
+    useEffect(() => {
+        console.log('username', username);
+        console.log('password', password);
+    });
+
     const handleSubmit = () => {
         logIn({
             username,
             password,
         });
+    }
+
+    const disableSubmit = () => {
+        let disabled = true;
+        if (username && password) {
+            disabled = false;
+        };
+        return disabled;
+    }
+
+    const updateUsername = (event) => {
+        setUsername(event.target.value)
+    }
+
+    const updatePassword = (event) => {
+        setPassword(event.target.value)
     }
 
     return (
@@ -40,7 +61,7 @@ export const Login = (props) => {
                     label='Username'
                     type='text'
                     fullwidth
-                    // onChange={}
+                    onChange={(e) => updateUsername(e)}
                 /> 
             </Box>
             <Box className={classes.loginFields}>
@@ -49,11 +70,11 @@ export const Login = (props) => {
                     label='Password'
                     type='password'
                     fullwidth
-                    // onChange={}
+                    onChange={(e) => updatePassword(e)}
                 /> 
             </Box>
             <Box>
-                <Button onClick={handleSubmit} color='inherit' variant='outlined' >Submit</Button>
+                <Button onClick={handleSubmit} disabled={disableSubmit()} color='inherit' variant='outlined' >Submit</Button>
             </Box>
         </Box>
     )

@@ -14,21 +14,26 @@ export const logIn = ({
 }) => async (dispatch) => {
     dispatch({ type: LOG_IN.request });
 
-    // axios.post('localhost:3001/logIn', {
-    //     username,
-    //     password,
-    // }).then(res => {
+    const colonSep = `${username}:${password}`;
+    const encoded = Buffer.from(colonSep, 'binary').toString('base64');
+
+    axios.get('http://localhost:3001/logIn', {
+        headers: {
+            Authorization: `Basic ${encoded}`
+        }
+    }).then(res => {
+        console.log('response status', res.status);
 
         dispatch({
             type: LOG_IN.success,
             payload: 'Matt',
         });
 
-    // }).catch(error => {
+    }).catch(error => {
 
-    //     dispatch({ type: LOG_IN.error });
+        dispatch({ type: LOG_IN.error });
 
-    // });
+    });
 
 };
 

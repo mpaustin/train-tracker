@@ -1,8 +1,10 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const { Pool } = require('pg');
 
 const app = express();
+app.use(cors());
 const port = 3001;
 
 // console.log('process env', process.env);
@@ -39,10 +41,10 @@ app.get('/workouts/:user', mw, async (req, res) => {
     res.status(200).send(values.rows);
 })
 
-app.post('/login', mw, async (req, res) => {
+app.get('/login', mw, async (req, res) => {
 
     const auth = req.headers.authorization;
-
+    console.log('auth', auth)
     if (auth && auth.startsWith('Basic')) {
 
         const encoded = auth.substring('Basic '.length).trim();
@@ -60,12 +62,14 @@ app.post('/login', mw, async (req, res) => {
             [username]
         )
         console.log('user.rows[0]', user.rows[0])
-        if (!user || !user.rows || user.rows[0].password !== password) {
-            res.status(401).send();
+        // console.log('user.rows[0].password', user.rows[0].password)
+        if (user && user.rows && user.rows[0] && user.rows[0].password === password) {
+            console.log('Log In: Success');
+            return res.status(200).send();
         }
-        res.status(200).send();
     }
-    res.status(403).send();
+    console.log('Log In: Failure');
+    return res.status(401).send();
 }); 
 
 app.listen(port, () => {
