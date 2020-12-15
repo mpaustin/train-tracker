@@ -9,6 +9,9 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
     loginFields: {
         margin: '1rem',
+    },
+    loginFailed: {
+        color: 'red',
     }
 });
 
@@ -18,7 +21,7 @@ export const Login = (props) => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
 
-    const { logIn } = props;
+    const { logIn, loginFailed } = props;
     const classes = useStyles();
 
     useEffect(() => {
@@ -54,6 +57,13 @@ export const Login = (props) => {
             <Box>
               Please log in to continue.  
             </Box>
+            {
+                loginFailed ?
+                <Box className={classes.loginFailed}>
+                    Incorrect username or password
+                </Box> 
+                : null 
+            }
             <Box className={classes.loginFields}>
                 <TextField
                     autofocus
@@ -81,7 +91,7 @@ export const Login = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    
+    loginFailed: state.users.loginFailed,
 })
 
 const mapDispatchToProps = {

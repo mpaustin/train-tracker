@@ -8,6 +8,7 @@ import {
 
 const initialState = {
     user: '',
+    loginFailed: false,
 }
 
 const users = (state = initialState, action) => {
@@ -18,9 +19,15 @@ const users = (state = initialState, action) => {
                 user: action.payload,
             });
         }
+        case LOG_IN.error: {
+            return Object.assign({}, state, {
+                loginFailed: true,
+            });
+        }
         case LOG_OUT: {
             return Object.assign({}, state, {
                 user: '',
+                loginFailed: false,
             });
         }
         default: {
