@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getWorkouts } from './workouts';
 
 export const LOG_IN = {
     request: 'LOG_IN_REQUEST',
@@ -7,6 +8,12 @@ export const LOG_IN = {
 }
 
 export const LOG_OUT = 'LOG_OUT';
+
+export const GET_WORKOUTS = {
+    request: 'GET_WORKOUTS_REQUEST',
+    success: 'GET_WORKOUTS_SUCCESS',
+    error: 'GET_WORKOUTS_ERROR',
+}
 
 export const logIn = ({
     username,
@@ -22,13 +29,14 @@ export const logIn = ({
             Authorization: `Basic ${encoded}`
         }
     }).then(res => {
-        console.log('response status', res.status);
-
+        
         dispatch({
             type: LOG_IN.success,
-            payload: 'Matt',
+            payload: username,
         });
 
+    }).then(res => {
+        dispatch(getWorkouts(username));
     }).catch(error => {
 
         dispatch({ type: LOG_IN.error });

@@ -25,8 +25,8 @@ export const Login = (props) => {
     const classes = useStyles();
 
     useEffect(() => {
-        console.log('username', username);
-        console.log('password', password);
+        // console.log('username', username);
+        // console.log('password', password);
     });
 
     const handleSubmit = () => {

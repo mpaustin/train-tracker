@@ -13,27 +13,23 @@ export const Content = (props) => {
 
     let columnTitles = [
         <TableCell style={{ color: 'white'}}>Date</TableCell>,
-        <TableCell style={{ color: 'white'}} align="left">Workout</TableCell>,
-        <TableCell style={{ color: 'white'}} align="left">Rating</TableCell>,
+        <TableCell style={{ color: 'white'}} align="left">Type</TableCell>,
+        <TableCell style={{ color: 'white'}} align="left">Description</TableCell>,
+        <TableCell style={{ color: 'white'}} align="left">Meditation?</TableCell>,
     ];
 
-    let rows = [
-        [
-            <TableCell>12/7/20</TableCell>,
-            <TableCell align="left">Weights</TableCell>,
-            <TableCell align="left">5.0</TableCell>,
-        ],
-        [
-            <TableCell>12/5/20</TableCell>,
-            <TableCell align="left">Rowing</TableCell>,
-            <TableCell align="left">4.5</TableCell>,
-        ],
-        [
-            <TableCell>12/4/20</TableCell>,
-            <TableCell align="left">Run</TableCell>,
-            <TableCell align="left">4.0</TableCell>,
-        ],
-    ]
+    let rows = [];
+    if (workouts) {
+        workouts.forEach(workout => {
+            let row = [
+                <TableCell>{workout.wdate}</TableCell>,
+                <TableCell align="left">{workout.type}</TableCell>,
+                <TableCell align="left">{workout.description}</TableCell>,
+                <TableCell align="left">{workout.meditation ? 'Yes' : 'No'}</TableCell>,
+            ]
+            rows.push(row);
+        });
+    }
 
     const handleOpen = () => {
         setOpen(true);
@@ -52,7 +48,7 @@ export const Content = (props) => {
                     <Route
                         path={'/home'}
                     >
-                        <Box height='90vh' margin='30px 25% 30px' >
+                        <Box height='90vh' margin='30px 0 30px' >
                             {
                                 user ?
                                 <>

@@ -32,11 +32,16 @@ export default function DenseTable(props) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.rows.map((row) => (
-                        <TableRow hover key={row.i}>
-                            {row}
-                        </TableRow>
-                    ))}
+                    {
+                        props.rows.length === 0 ?
+                        'No results'
+                        :
+                        props.rows.map((row) => (
+                            <TableRow hover key={row.i}>
+                                {row}
+                            </TableRow>
+                        ))
+                    }
                 </TableBody>
             </Table>
         </TableContainer>
