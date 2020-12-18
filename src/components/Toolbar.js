@@ -32,9 +32,9 @@ export const ToolBar = (props) => {
                     </Box>
                     :
                     <Box>
-                        <Link to='/home'>
+                        {/* <Link to='/home'>
                             Log In
-                        </Link>
+                        </Link> */}
                     </Box>
                     }
                 </Box>
