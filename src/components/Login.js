@@ -44,6 +44,12 @@ export const Login = (props) => {
         return disabled;
     }
 
+    const handleKeyPress = (e) => {
+        if (e.key == 'Enter' && !disableSubmit()) {
+            handleSubmit();
+        }
+    }
+
     const updateUsername = (event) => {
         setUsername(event.target.value)
     }
@@ -72,6 +78,7 @@ export const Login = (props) => {
                     type='text'
                     fullwidth
                     onChange={(e) => updateUsername(e)}
+                    onKeyPress={handleKeyPress}
                 /> 
             </Box>
             <Box className={classes.loginFields}>
@@ -81,6 +88,7 @@ export const Login = (props) => {
                     type='password'
                     fullwidth
                     onChange={(e) => updatePassword(e)}
+                    onKeyPress={handleKeyPress}
                 /> 
             </Box>
             <Box>
