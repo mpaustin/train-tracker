@@ -35,7 +35,7 @@ app.get('/users/all', mw, async (req, res) => {
 app.get('/workouts', mw, async (req, res) => {
     const { user } = req.query;
     const values = await pgClient.query(
-        'select * from trainworkouts where username = $1', 
+        'select * from trainworkouts where username = $1 order by wdate desc', 
         [user]
     );
     res.status(200).send(values.rows);
