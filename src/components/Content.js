@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Table from './Table';
 import Login from './Login';
+import AddWorkout from './AddWorkout';
 import { Box, TableCell, Button } from '@material-ui/core';
 import { BrowserRouter, Route, Link, Switch, Redirect } from "react-router-dom";
 
@@ -52,6 +53,7 @@ export const Content = (props) => {
                             {
                                 user ?
                                 <>
+                                    <AddWorkout/>
                                     <h4>
                                         {user}'s Workouts 
                                     </h4>
