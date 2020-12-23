@@ -5,8 +5,8 @@ import { Button, Dialog, DialogTitle, DialogActions, DialogContent, DialogConten
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-    dialogSizing: {
-        minWidth: '1000px'
+    wType: {
+        marginTop: '20px',
     }
 });
 
@@ -14,7 +14,7 @@ export const AddWorkout = () => {
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [wDate, setWDate] = React.useState(Date.now());
+    const [wDate, setWDate] = React.useState(new Date());
     const [wType, setWType] = React.useState('');
     const [wDesc, setWDesc] = React.useState('');
     const [meditation, setMeditation] = React.useState(false);
@@ -38,6 +38,10 @@ export const AddWorkout = () => {
 
     const handleSubmit = () => {
         setOpen(false);
+        console.log('date', wDate);
+        console.log('type', wType);
+        console.log('desc', wDesc);
+        console.log('meditation', meditation);
     };
 
     const buildWorkoutTypes = () => {
@@ -46,13 +50,26 @@ export const AddWorkout = () => {
             radioTypes.push(
                 <FormControlLabel
                     value={type}
-                    control={<Radio color="primary" />}
+                    control={<Radio color="inherit" />}
                     label={type}
                     labelPlacement="start"
                 />
             )
         })
         return radioTypes;
+    }
+
+    const handleValueChange = (field) => {
+        switch (field) {
+            case 'date':
+                break;
+            case 'type':
+                break;
+            case 'desc':
+                break;
+            case 'meditation':
+                break;
+        }
     }
 
     return (
@@ -62,13 +79,15 @@ export const AddWorkout = () => {
                 <DialogContent>
                     <TextField
                         id='date'
-                        label='Date'
                         type='date'
+                        color='inherit'
+                        value={wDate}
+                        onChange={(e) => {setWDate(e.target.value)}}
                         fullWidth
                     />
-                    <FormControl component="fieldset" className='radio-button-section'>
-                        <FormLabel component="legend">Type</FormLabel>
-                        <RadioGroup name="Type" value={wType} onChange={(e) => {}}>
+                    <FormControl component="fieldset" className='radio-button-section' className={classes.wType}>
+                        <FormLabel component="legend" color='inherit'>Type</FormLabel>
+                        <RadioGroup name="Type" value={wType} onChange={(e) => {setWType(e.target.value)}}>
                             {buildWorkoutTypes()}
                         </RadioGroup>
                         <FormHelperText></FormHelperText>
@@ -78,15 +97,18 @@ export const AddWorkout = () => {
                         id='description'
                         label='Description'
                         type='text'
+                        color='inherit'
+                        value={wDesc}
+                        onChange={(e) => {setWDesc(e.target.value)}}
                         fullWidth
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={closeDialog} color='primary' >Cancel</Button>
-                    <Button onClick={handleSubmit} color='primary' >Submit</Button>
+                    <Button onClick={closeDialog} color='inherit' >Cancel</Button>
+                    <Button onClick={handleSubmit} color='inherit' >Submit</Button>
                 </DialogActions>
             </Dialog>
-            <Button onClick={openDialog}>
+            <Button onClick={openDialog} variant='outlined'>
                 Log New Workout
             </Button>
         </div>

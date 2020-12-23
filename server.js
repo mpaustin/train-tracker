@@ -41,6 +41,10 @@ app.get('/workouts', mw, async (req, res) => {
     res.status(200).send(values.rows);
 })
 
+app.post('/workouts/new', mw, async (req, res) => {
+    // TODO: build out endpoint for adding new workout based on user
+})
+
 app.get('/login', mw, async (req, res) => {
 
     const auth = req.headers.authorization;
