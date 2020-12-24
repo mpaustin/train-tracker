@@ -48,7 +48,6 @@ app.post('/workouts/new', mw, async (req, res) => {
 app.get('/login', mw, async (req, res) => {
 
     const auth = req.headers.authorization;
-    console.log('auth', auth)
     if (auth && auth.startsWith('Basic')) {
 
         const encoded = auth.substring('Basic '.length).trim();
@@ -58,15 +57,10 @@ app.get('/login', mw, async (req, res) => {
         const username = decoded.substring(0,index);
         const password = decoded.substring(index + 1);
 
-        console.log('username', username);
-        console.log('password', password);
-
         const user = await pgClient.query(
             'select * from trainusers where username = $1',
             [username]
         )
-        console.log('user.rows[0]', user.rows[0])
-        // console.log('user.rows[0].password', user.rows[0].password)
         if (user && user.rows && user.rows[0] && user.rows[0].password === password) {
             console.log('Log In: Success');
             return res.status(200).send();
