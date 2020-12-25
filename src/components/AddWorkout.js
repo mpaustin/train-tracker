@@ -18,6 +18,7 @@ export const AddWorkout = () => {
     const [wType, setWType] = React.useState('');
     const [wDesc, setWDesc] = React.useState('');
     const [meditation, setMeditation] = React.useState(false);
+    const [sauna, setSauna] = React.useState(false);
 
     const types = [
         'Weights',
@@ -42,6 +43,7 @@ export const AddWorkout = () => {
         console.log('type', wType);
         console.log('desc', wDesc);
         console.log('meditation', meditation);
+        console.log('sauna', sauna);
 
         // TODO: add workout action here
     };
@@ -59,19 +61,6 @@ export const AddWorkout = () => {
             )
         })
         return radioTypes;
-    }
-
-    const handleValueChange = (field) => {
-        switch (field) {
-            case 'date':
-                break;
-            case 'type':
-                break;
-            case 'desc':
-                break;
-            case 'meditation':
-                break;
-        }
     }
 
     return (
@@ -108,7 +97,7 @@ export const AddWorkout = () => {
 
                 {/* TODO: add meditation toggle */}
                 {/* TODO: add sauna toggle */}
-                
+
                 <DialogActions>
                     <Button onClick={closeDialog} color='inherit' >Cancel</Button>
                     <Button onClick={handleSubmit} color='inherit' >Submit</Button>
