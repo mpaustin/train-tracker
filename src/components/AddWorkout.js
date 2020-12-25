@@ -42,6 +42,8 @@ export const AddWorkout = () => {
         console.log('type', wType);
         console.log('desc', wDesc);
         console.log('meditation', meditation);
+
+        // TODO: add workout action here
     };
 
     const buildWorkoutTypes = () => {
