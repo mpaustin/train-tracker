@@ -21,6 +21,7 @@ const workouts = (state = initialState, action) => {
         case GET_WORKOUTS.error: {
             
         }
+        // TODO: addWorkout reducers
         default: {
             return state;
         }

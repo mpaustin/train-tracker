@@ -18,3 +18,7 @@ export const getWorkouts = (user) => async (dispatch) => {
         dispatch({ type: GET_WORKOUTS.error });
     });
 }
+
+export const addWorkout = (user) => async (dispatch) => {
+    // TODO: addWorkout action
+}
