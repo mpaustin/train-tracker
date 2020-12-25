@@ -105,6 +105,10 @@ export const AddWorkout = () => {
                         fullWidth
                     />
                 </DialogContent>
+
+                {/* TODO: add meditation toggle */}
+                {/* TODO: add sauna toggle */}
+                
                 <DialogActions>
                     <Button onClick={closeDialog} color='inherit' >Cancel</Button>
                     <Button onClick={handleSubmit} color='inherit' >Submit</Button>
