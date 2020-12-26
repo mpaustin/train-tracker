@@ -45,7 +45,7 @@ export const Content = (props) => {
                     <Route
                         path={'/workouts'}
                     >
-                        <Box height='90vh' margin='30px 0 30px' >
+                        <Box height='100%' margin='30px 0 30px' >
                             {
                                 user ?
                                 <>
