@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 import { connect } from 'react-redux'
 import { Button, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText, TextField,
-    FormControl, FormControlLabel, RadioGroup, FormHelperText, Radio, FormLabel } from '@material-ui/core';
+    FormControl, FormControlLabel, RadioGroup, FormHelperText, Radio, FormLabel, Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
+import { getWorkouts } from '../redux/actions/workouts';
 
 const useStyles = makeStyles({
     wType: {
@@ -10,7 +13,9 @@ const useStyles = makeStyles({
     }
 });
 
-export const AddWorkout = () => {
+export const AddWorkout = (props) => {
+
+    const { user, getWorkouts } = props;
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
@@ -19,6 +24,9 @@ export const AddWorkout = () => {
     const [wDesc, setWDesc] = React.useState('');
     const [meditation, setMeditation] = React.useState(false);
     const [sauna, setSauna] = React.useState(false);
+
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+    const [success, setSuccess] = React.useState(false);
 
     const types = [
         'Weights',
@@ -45,7 +53,14 @@ export const AddWorkout = () => {
         console.log('meditation', meditation);
         console.log('sauna', sauna);
 
-        // TODO: add workout action here
+        addWorkout({
+            user: user,
+            date: wDate,
+            type: wType,
+            description: wDesc,
+            meditation: meditation,
+            sauna: sauna,
+        });
     };
 
     const buildWorkoutTypes = () => {
@@ -62,6 +77,39 @@ export const AddWorkout = () => {
         })
         return radioTypes;
     }
+
+    const addWorkout = ({
+        user,
+        date,
+        type,
+        description,
+        sauna,
+        meditation,
+    }) => {
+        axios.post('http://localhost:3001/workouts/new', {
+            user,
+            date,
+            type,
+            description,
+            sauna,
+            meditation,
+        }).then(res => {
+            setSuccess(true);
+            setSnackbarOpen(true);
+            getWorkouts(user);
+        }).catch(err => {
+            setSnackbarOpen(true);
+            console.log('ERROR', err);
+        });
+    }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setSnackbarOpen(false);
+    };
 
     return (
         <div>
@@ -106,16 +154,26 @@ export const AddWorkout = () => {
             <Button onClick={openDialog} variant='outlined'>
                 Log New Workout
             </Button>
+            <Snackbar open={snackbarOpen} autoHideDuration={5000} onClose={handleClose}>
+                {success ?
+                <Alert severity='success' >Workout successfully added</Alert>
+                :
+                <Alert severity='error'>ERROR: Workout NOT added</Alert>    
+                }
+            </Snackbar>
         </div>
     )
 }
 
-const mapStateToProps = (state) => ({
-    
-})
+const mapStateToProps = (state) => {
+    return {
+        state: state,
+        user: state.users.user,
+    }
+};
 
 const mapDispatchToProps = {
-    
+    getWorkouts,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddWorkout)

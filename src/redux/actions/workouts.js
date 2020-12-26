@@ -6,6 +6,12 @@ export const GET_WORKOUTS = {
     error: 'GET_WORKOUTS_ERROR',
 }
 
+export const ADD_WORKOUT = {
+    request: 'ADD_WORKOUT_REQUEST',
+    success: 'ADD_WORKOUT_SUCCESS',
+    error: 'ADD_WORKOUT_ERROR',
+}
+
 export const getWorkouts = (user) => async (dispatch) => {
     dispatch({ type: GET_WORKOUTS.request });
     axios.get('http://localhost:3001/workouts', {
@@ -17,8 +23,4 @@ export const getWorkouts = (user) => async (dispatch) => {
     }).catch(error => {
         dispatch({ type: GET_WORKOUTS.error });
     });
-}
-
-export const addWorkout = (user) => async (dispatch) => {
-    // TODO: addWorkout action
 }
