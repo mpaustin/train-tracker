@@ -64,7 +64,7 @@ app.post('/workouts/new', mw, async (req, res) => {
             }
         }
     );
-    console.log('SUCCESS', res);
+    console.log('Added workout successfully');
     res.status(200).send();
 })
 
