@@ -16,6 +16,7 @@ export const Content = (props) => {
         <TableCell style={{ color: 'white'}}>Date</TableCell>,
         <TableCell style={{ color: 'white'}} align="left">Type</TableCell>,
         <TableCell style={{ color: 'white'}} align="left">Description</TableCell>,
+        <TableCell style={{ color: 'white'}} align="left">Sauna?</TableCell>,
         <TableCell style={{ color: 'white'}} align="left">Meditation?</TableCell>,
     ];
 
@@ -26,6 +27,7 @@ export const Content = (props) => {
                 <TableCell>{workout.wdate}</TableCell>,
                 <TableCell align="left">{workout.type}</TableCell>,
                 <TableCell align="left">{workout.description}</TableCell>,
+                <TableCell align="left">{workout.sauna ? 'Yes' : 'No'}</TableCell>,
                 <TableCell align="left">{workout.meditation ? 'Yes' : 'No'}</TableCell>,
             ]
             rows.push(row);
