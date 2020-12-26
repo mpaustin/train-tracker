@@ -129,6 +129,7 @@ export const AddWorkout = (props) => {
             <Dialog open={open} onClose={closeDialog} className={classes.dialogSizing}>
                 <DialogTitle>Log Workout</DialogTitle>
                 <DialogContent>
+                    {/* TODO: make current date default into date picker */}
                     <TextField
                         id='date'
                         type='date'
@@ -156,11 +157,19 @@ export const AddWorkout = (props) => {
                         className={classes.wDesc}
                     />
                     <div/>
-                    Sauna
-                    <Checkbox color='inherit' onChange={handleChange('sauna')} />
+                    <FormControlLabel
+                        value="end"
+                        control={<Checkbox color="inherit" onChange={handleChange('sauna')}/>}
+                        label="Sauna"
+                        labelPlacement="end"
+                    />
                     <div/>
-                    Meditation
-                    <Checkbox color='inherit' onChange={handleChange('meditation')} />
+                    <FormControlLabel
+                        value="end"
+                        control={<Checkbox color="inherit" onChange={handleChange('meditation')}/>}
+                        label="Meditation"
+                        labelPlacement="end"
+                    />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={closeDialog} color='inherit' >Cancel</Button>
@@ -170,11 +179,17 @@ export const AddWorkout = (props) => {
             <Button onClick={openDialog} variant='outlined'>
                 Log New Workout
             </Button>
-            <Snackbar open={snackbarOpen} autoHideDuration={5000} onClose={handleClose}>
+            {/* TODO: add refresh button for re-getting workouts */}
+            <Snackbar open={snackbarOpen} autoHideDuration={5000} onClose={handleClose} 
+                anchorOrigin={{
+                    horizontal: 'center',
+                    vertical: 'top'
+                }}
+            >
                 {success ?
-                <Alert severity='success' >Workout successfully added</Alert>
+                <Alert severity='success' variant='filled'>Workout successfully added</Alert>
                 :
-                <Alert severity='error'>ERROR: Workout NOT added</Alert>    
+                <Alert severity='error' variant='filled'>ERROR: Workout NOT added</Alert>    
                 }
             </Snackbar>
         </div>
