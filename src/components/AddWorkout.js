@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { connect } from 'react-redux'
 import { Button, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText, TextField,
-    FormControl, FormControlLabel, RadioGroup, FormHelperText, Radio, FormLabel, Snackbar } from '@material-ui/core';
+    FormControl, FormControlLabel, RadioGroup, FormHelperText, Radio, FormLabel, Snackbar, Checkbox } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import { getWorkouts } from '../redux/actions/workouts';
@@ -10,7 +10,10 @@ import { getWorkouts } from '../redux/actions/workouts';
 const useStyles = makeStyles({
     wType: {
         marginTop: '20px',
-    }
+    },
+    wDesc: {
+        marginBottom: '20px',
+    },
 });
 
 export const AddWorkout = (props) => {
@@ -107,9 +110,19 @@ export const AddWorkout = (props) => {
         if (reason === 'clickaway') {
           return;
         }
-    
         setSnackbarOpen(false);
     };
+
+    const handleChange = (field) => (event) => {
+        switch (field) {
+            case 'meditation':
+                setMeditation(event.target.checked);
+                break;
+            case 'sauna':
+                setSauna(event.target.checked);
+                break;
+        };
+    }
 
     return (
         <div>
@@ -140,12 +153,15 @@ export const AddWorkout = (props) => {
                         value={wDesc}
                         onChange={(e) => {setWDesc(e.target.value)}}
                         fullWidth
+                        className={classes.wDesc}
                     />
+                    <div/>
+                    Sauna
+                    <Checkbox color='inherit' onChange={handleChange('sauna')} />
+                    <div/>
+                    Meditation
+                    <Checkbox color='inherit' onChange={handleChange('meditation')} />
                 </DialogContent>
-
-                {/* TODO: add meditation toggle */}
-                {/* TODO: add sauna toggle */}
-
                 <DialogActions>
                     <Button onClick={closeDialog} color='inherit' >Cancel</Button>
                     <Button onClick={handleSubmit} color='inherit' >Submit</Button>
