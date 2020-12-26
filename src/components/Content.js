@@ -8,8 +8,6 @@ import { BrowserRouter, Route, Link, Switch, Redirect } from "react-router-dom";
 
 export const Content = (props) => {
 
-    const [open, setOpen] = React.useState(false);
-
     const { user, workouts } = props;
 
     let columnTitles = [
@@ -34,10 +32,6 @@ export const Content = (props) => {
         });
     }
 
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
     return (
         <div>
             <Box height='100%' width='100%' display='flex' flexDirection='column' justifyContent='center'>
@@ -46,10 +40,10 @@ export const Content = (props) => {
                         exact
                         path={'/'}
                     >
-                        <Redirect to={'/home'}/>
+                        <Redirect to={'/workouts'}/>
                     </Route>
                     <Route
-                        path={'/home'}
+                        path={'/workouts'}
                     >
                         <Box height='90vh' margin='30px 0 30px' >
                             {
@@ -68,11 +62,6 @@ export const Content = (props) => {
                                 <Login/>
                             }
                         </Box>
-                    </Route>
-                    <Route
-                        path={'/login'}
-                    >
-                        
                     </Route>
                 </Switch>
             </Box>
