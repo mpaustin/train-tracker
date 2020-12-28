@@ -31,7 +31,7 @@ export const AddWorkout = (props) => {
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [wDate, setWDate] = React.useState(new Date());
+    const [wDate, setWDate] = React.useState(new Date().toISOString().split('T')[0]);
     const [wType, setWType] = React.useState('');
     const [wDesc, setWDesc] = React.useState('');
     const [meditation, setMeditation] = React.useState(false);
@@ -142,7 +142,6 @@ export const AddWorkout = (props) => {
             <Dialog open={open} onClose={closeDialog} className={classes.dialogSizing}>
                 <DialogTitle>Log Workout</DialogTitle>
                 <DialogContent>
-                    {/* TODO: make current date default into date picker */}
                     <TextField
                         id='date'
                         type='date'
