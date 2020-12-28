@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import Table from './Table';
 import Login from './Login';
 import AddWorkout from './AddWorkout';
-import { Box, TableCell, Button } from '@material-ui/core';
+import { Box, TableCell, Button, CircularProgress } from '@material-ui/core';
 import { BrowserRouter, Route, Link, Switch, Redirect } from "react-router-dom";
 
 export const Content = (props) => {
 
-    const { user, workouts } = props;
+    const { user, workouts, loading } = props;
 
     let columnTitles = [
         <TableCell style={{ color: 'white'}}>Date</TableCell>,
@@ -53,10 +53,15 @@ export const Content = (props) => {
                                     <h4>
                                         {user}'s Workouts 
                                     </h4>
-                                    <Table 
-                                        columnTitles={columnTitles}
-                                        rows={rows}
-                                    />
+                                    {
+                                        loading ?
+                                        <CircularProgress color='inherit'/>
+                                        :
+                                        <Table 
+                                            columnTitles={columnTitles}
+                                            rows={rows}
+                                        />
+                                    }
                                 </>
                                 :
                                 <Login/>
@@ -75,6 +80,7 @@ const mapStateToProps = (state) => {
         state: state,
         user: state.users.user,
         workouts: state.workouts.workouts,
+        loading: state.workouts.loading,
     }
 };
 
