@@ -2,10 +2,13 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { connect } from 'react-redux'
 import { Button, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText, TextField,
-    FormControl, FormControlLabel, RadioGroup, FormHelperText, Radio, FormLabel, Snackbar, Checkbox } from '@material-ui/core';
+    FormControl, FormControlLabel, RadioGroup, FormHelperText, Radio, FormLabel, Snackbar, Checkbox,
+    Box, } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import { getWorkouts } from '../redux/actions/workouts';
+import SyncIcon from '@material-ui/icons/Sync';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles({
     wType: {
@@ -124,6 +127,10 @@ export const AddWorkout = (props) => {
         };
     }
 
+    const handleRefresh = () => {
+        getWorkouts(user);
+    }
+
     return (
         <div>
             <Dialog open={open} onClose={closeDialog} className={classes.dialogSizing}>
@@ -176,10 +183,14 @@ export const AddWorkout = (props) => {
                     <Button onClick={handleSubmit} color='inherit' >Submit</Button>
                 </DialogActions>
             </Dialog>
-            <Button onClick={openDialog} variant='outlined'>
-                Log New Workout
-            </Button>
-            {/* TODO: add refresh button for re-getting workouts */}
+            <Box>
+                <Button onClick={openDialog} variant='outlined' startIcon={<AddIcon/>}>
+                    Log New Workout
+                </Button>
+                <Button onClick={handleRefresh} variant='outlined' startIcon={<SyncIcon/>} >
+                    Refresh
+                </Button>
+            </Box>
             <Snackbar open={snackbarOpen} autoHideDuration={5000} onClose={handleClose} 
                 anchorOrigin={{
                     horizontal: 'center',
