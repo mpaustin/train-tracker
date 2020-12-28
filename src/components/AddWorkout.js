@@ -17,6 +17,12 @@ const useStyles = makeStyles({
     wDesc: {
         marginBottom: '20px',
     },
+    addButton: {
+        marginRight:'5px',
+    },
+    refreshButton: {
+        marginLeft: '5px',
+    }
 });
 
 export const AddWorkout = (props) => {
@@ -184,10 +190,10 @@ export const AddWorkout = (props) => {
                 </DialogActions>
             </Dialog>
             <Box>
-                <Button onClick={openDialog} variant='outlined' startIcon={<AddIcon/>}>
-                    Log New Workout
+                <Button onClick={openDialog} variant='outlined' startIcon={<AddIcon/>} className={classes.addButton}>
+                    Log Workout
                 </Button>
-                <Button onClick={handleRefresh} variant='outlined' startIcon={<SyncIcon/>} >
+                <Button onClick={handleRefresh} variant='outlined' startIcon={<SyncIcon/>} className={classes.refreshButton}>
                     Refresh
                 </Button>
             </Box>
