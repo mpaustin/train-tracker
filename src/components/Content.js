@@ -5,6 +5,7 @@ import Login from './Login';
 import AddWorkout from './AddWorkout';
 import { Box, TableCell, Button, CircularProgress } from '@material-ui/core';
 import { BrowserRouter, Route, Link, Switch, Redirect } from "react-router-dom";
+import LoginButton from './LoginButton';
 
 export const Content = (props) => {
 
@@ -46,7 +47,7 @@ export const Content = (props) => {
                         path={'/workouts'}
                     >
                         <Box height='100%' margin='30px 0 30px' >
-                            {
+                            {/* {
                                 user ?
                                 <>
                                     <AddWorkout/>
@@ -65,7 +66,11 @@ export const Content = (props) => {
                                 </>
                                 :
                                 <Login/>
-                            }
+                            } */}
+
+                            <LoginButton/>
+                            {window.location.origin}
+
                         </Box>
                     </Route>
                 </Switch>
