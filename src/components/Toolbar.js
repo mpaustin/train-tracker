@@ -4,6 +4,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { Box, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { logOut } from '../redux/actions/users';
+import { useAuth0 } from '@auth0/auth0-react';
+import LogoutButton from './LogoutButton';
 // import { makeStyles } from '@material-ui/core/styles';
 
 // const useStyles = makeStyles({
@@ -15,6 +17,7 @@ import { logOut } from '../redux/actions/users';
 
 export const ToolBar = (props) => {
     const { user, logOut } = props;
+    const { isAuthenticated } = useAuth0();
     return (
         <div>
             <Toolbar>
@@ -24,11 +27,12 @@ export const ToolBar = (props) => {
                            Train Tracker 
                         </h2>
                     </Box>
-                    {user ?
+                    {isAuthenticated ?
                     <Box>
-                        <Button onClick={() => logOut()} >
+                        {/* <Button onClick={() => logOut()} >
                             Log Out
-                        </Button>
+                        </Button> */}
+                        <LogoutButton/>
                     </Box>
                     :
                     <Box>

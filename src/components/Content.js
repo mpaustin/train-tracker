@@ -41,14 +41,20 @@ export const Content = (props) => {
                         exact
                         path={'/'}
                     >
-                        <Redirect to={'/workouts'}/>
+                        <Redirect to={'/login'}/>
+                    </Route>
+                    <Route
+                        path={'/login'}
+                    >
+                        <Box height='100%' margin='30px 0 30px' >
+                            <LoginButton/>
+                        </Box>
                     </Route>
                     <Route
                         path={'/workouts'}
                     >
                         <Box height='100%' margin='30px 0 30px' >
-                            {/* {
-                                user ?
+                            {
                                 <>
                                     <AddWorkout/>
                                     <h4>
@@ -64,13 +70,7 @@ export const Content = (props) => {
                                         />
                                     }
                                 </>
-                                :
-                                <Login/>
-                            } */}
-
-                            <LoginButton/>
-                            {window.location.origin}
-
+                            }
                         </Box>
                     </Route>
                 </Switch>

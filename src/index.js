@@ -15,7 +15,7 @@ ReactDOM.render(
   <Auth0Provider
     domain="mpaustin.us.auth0.com"
     clientId="UjDu5lV6rCJaL6Ss7sOwLZbkyI4TdFO1"
-    redirectUri={window.location.origin}
+    redirectUri={window.location.origin + '/workouts'}
   >
     <ThemeProvider theme={theme} >
       <Provider store={store}>
