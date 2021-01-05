@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { getWorkouts } from '../redux/actions/workouts';
 import SyncIcon from '@material-ui/icons/Sync';
 import AddIcon from '@material-ui/icons/Add';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const useStyles = makeStyles({
     wType: {
@@ -27,7 +28,10 @@ const useStyles = makeStyles({
 
 export const AddWorkout = (props) => {
 
-    const { user, getWorkouts } = props;
+    const { 
+        // user, 
+        getWorkouts } = props;
+    const { user, isAuthenticated, isLoading } = useAuth0();
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
@@ -66,7 +70,7 @@ export const AddWorkout = (props) => {
         console.log('sauna', sauna);
 
         addWorkout({
-            user: user,
+            user: user.name,
             date: wDate,
             type: wType,
             description: wDesc,
@@ -134,7 +138,7 @@ export const AddWorkout = (props) => {
     }
 
     const handleRefresh = () => {
-        getWorkouts(user);
+        getWorkouts(user.name);
     }
 
     return (

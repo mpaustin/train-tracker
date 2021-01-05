@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Table from './Table';
 import Login from './Login';
@@ -6,10 +6,23 @@ import AddWorkout from './AddWorkout';
 import { Box, TableCell, Button, CircularProgress } from '@material-ui/core';
 import { BrowserRouter, Route, Link, Switch, Redirect } from "react-router-dom";
 import LoginButton from './LoginButton';
+import { useAuth0 } from '@auth0/auth0-react';
+import { getWorkouts } from '../redux/actions/workouts';
 
 export const Content = (props) => {
 
-    const { user, workouts, loading } = props;
+    const { 
+        // user, 
+        workouts, loading, getWorkouts } = props;
+
+    const { user, isAuthenticated } = useAuth0();
+
+    useEffect(() => {
+        if (isAuthenticated && user && user.name) {
+            getWorkouts(user.name)
+        }
+    }, [user]);
+    
 
     let columnTitles = [
         <TableCell style={{ color: 'white'}}>Date</TableCell>,
@@ -53,25 +66,30 @@ export const Content = (props) => {
                     <Route
                         path={'/workouts'}
                     >
-                        <Box height='100%' margin='30px 0 30px' >
-                            {
-                                <>
-                                    <AddWorkout/>
-                                    <h4>
-                                        {user}'s Workouts 
-                                    </h4>
-                                    {
-                                        loading ?
-                                        <CircularProgress color='inherit'/>
-                                        :
-                                        <Table 
-                                            columnTitles={columnTitles}
-                                            rows={rows}
-                                        />
-                                    }
-                                </>
-                            }
-                        </Box>
+                        { isAuthenticated ?
+                            <Box height='100%' margin='30px 0 30px' >
+                                {
+                                    <>
+                                        <AddWorkout/>
+                                        <h4>
+                                            Your Workouts 
+                                        </h4>
+                                        {
+                                            loading ?
+                                            <CircularProgress color='inherit'/>
+                                            :
+                                            <Table 
+                                                columnTitles={columnTitles}
+                                                rows={rows}
+                                            />
+                                        }
+                                    </>
+                                }
+                            </Box>
+                            :
+                            null
+                        }
+                        
                     </Route>
                 </Switch>
             </Box>
@@ -90,7 +108,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    
+    getWorkouts,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content)
