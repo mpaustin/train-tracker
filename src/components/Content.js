@@ -15,7 +15,7 @@ export const Content = (props) => {
         // user, 
         workouts, loading, getWorkouts } = props;
 
-    const { user, isAuthenticated } = useAuth0();
+    const { user, isAuthenticated, isLoading } = useAuth0();
 
     useEffect(() => {
         if (isAuthenticated && user && user.name) {
@@ -59,6 +59,7 @@ export const Content = (props) => {
                     <Route
                         path={'/login'}
                     >
+                        Please log in to continue.
                         <Box height='100%' margin='30px 0 30px' >
                             <LoginButton/>
                         </Box>
@@ -86,6 +87,9 @@ export const Content = (props) => {
                                     </>
                                 }
                             </Box>
+                            :
+                            !isLoading ? 
+                            <Redirect to='/login'/>
                             :
                             null
                         }
