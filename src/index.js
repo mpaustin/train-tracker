@@ -16,6 +16,8 @@ ReactDOM.render(
     domain="mpaustin.us.auth0.com"
     clientId="UjDu5lV6rCJaL6Ss7sOwLZbkyI4TdFO1"
     redirectUri={window.location.origin + '/workouts'}
+    audience="api.traintracker.com"
+    scope="read:workouts"
   >
     <ThemeProvider theme={theme} >
       <Provider store={store}>

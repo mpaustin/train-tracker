@@ -3,6 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
 const bodyParser = require('body-parser');
+const jwt = require('express-jwt');
+const jwtAuthz = require('express-jwt-authz');
+const jwksRsa = require('jwks-rsa');
 
 const app = express();
 app.use(cors());
@@ -11,6 +14,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const port = 3001;
 
 // console.log('process env', process.env);
+
+const checkJwt = jwt({
+
+    secret: jwksRsa.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: `https://mpaustin.us.auth0.com/.well-known/jwks.json`
+    }),
+  
+    audience: 'api.traintracker.com',
+    issuer: `https://mpaustin.us.auth0.com/`,
+    algorithms: ['RS256']
+});
+
+app.use(checkJwt);
 
 const mw = (req, res, next) => {
     console.log('req.url', req.url);

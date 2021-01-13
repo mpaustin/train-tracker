@@ -15,11 +15,22 @@ export const Content = (props) => {
         // user, 
         workouts, loading, getWorkouts } = props;
 
-    const { user, isAuthenticated, isLoading } = useAuth0();
+    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
 
     useEffect(() => {
         if (isAuthenticated && user && user.name) {
-            getWorkouts(user.name)
+
+            const getUserWorkouts = async () => {
+                const token = await getAccessTokenSilently({
+                    audience: "api.traintracker.com",
+                    scope: "read:workouts"
+                })
+    
+                console.log('token', token)
+                getWorkouts(user.name, token);
+            }
+
+            getUserWorkouts();
         }
     }, [user]);
     
