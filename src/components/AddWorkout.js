@@ -31,7 +31,7 @@ export const AddWorkout = (props) => {
     const { 
         // user, 
         getWorkouts } = props;
-    const { user, isAuthenticated, isLoading } = useAuth0();
+    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
@@ -69,14 +69,28 @@ export const AddWorkout = (props) => {
         console.log('meditation', meditation);
         console.log('sauna', sauna);
 
-        addWorkout({
-            user: user.name,
-            date: wDate,
-            type: wType,
-            description: wDesc,
-            meditation: meditation,
-            sauna: sauna,
-        });
+        if (isAuthenticated && user && user.name) {
+
+            const addNewWorkout = async () => {
+                const token = await getAccessTokenSilently({
+                    audience: "api.traintracker.com",
+                    scope: "read:workouts"
+                })
+    
+                console.log('token', token)
+                addWorkout({
+                    user: user.name,
+                    date: wDate,
+                    type: wType,
+                    description: wDesc,
+                    meditation: meditation,
+                    sauna: sauna,
+                    token: token,
+                });
+            }
+
+            addNewWorkout();
+        }
     };
 
     const buildWorkoutTypes = () => {
@@ -101,6 +115,7 @@ export const AddWorkout = (props) => {
         description,
         sauna,
         meditation,
+        token,
     }) => {
         axios.post('http://localhost:3001/workouts/new', {
             user,
@@ -109,10 +124,14 @@ export const AddWorkout = (props) => {
             description,
             sauna,
             meditation,
+        },{
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         }).then(res => {
             setSuccess(true);
             setSnackbarOpen(true);
-            getWorkouts(user);
+            getWorkouts(user, token);
         }).catch(err => {
             setSnackbarOpen(true);
             console.log('ERROR', err);
@@ -138,7 +157,21 @@ export const AddWorkout = (props) => {
     }
 
     const handleRefresh = () => {
-        getWorkouts(user.name);
+
+        if (isAuthenticated && user && user.name) {
+
+            const refresh = async () => {
+                const token = await getAccessTokenSilently({
+                    audience: "api.traintracker.com",
+                    scope: "read:workouts"
+                })
+    
+                console.log('token', token)
+                getWorkouts(user.name, token);
+            }
+
+            refresh();
+        }
     }
 
     return (
