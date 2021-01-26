@@ -24,7 +24,7 @@ export const logIn = ({
     const colonSep = `${username}:${password}`;
     const encoded = Buffer.from(colonSep, 'binary').toString('base64');
 
-    axios.get('http://localhost:3001/logIn', {
+    axios.get('/logIn', {
         headers: {
             Authorization: `Basic ${encoded}`
         }
