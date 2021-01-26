@@ -35,7 +35,23 @@ export const AddWorkout = (props) => {
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [wDate, setWDate] = React.useState(new Date().toISOString().split('T')[0]);
+    const [wDate, setWDate] = React.useState(() => {
+            const date = new Date();
+            let month = '' + (date.getMonth() + 1);
+            let day = '' + date.getDate();
+            const year = '' + date.getFullYear();
+
+            if (month.length < 2) {
+                month = '0' + month;
+            }
+            if (day.length < 2) {
+                day = '0' + day;
+            }
+
+            return [year, month, day].join('-');
+        }
+    );
+    // const [wDate, setWDate] = React.useState(new Date().toISOString().split('T')[0]);
     const [wType, setWType] = React.useState('');
     const [wDesc, setWDesc] = React.useState('');
     const [meditation, setMeditation] = React.useState(false);
