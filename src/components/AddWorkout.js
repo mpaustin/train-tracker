@@ -133,7 +133,7 @@ export const AddWorkout = (props) => {
         meditation,
         token,
     }) => {
-        axios.post('http://localhost:3001/workouts/new', {
+        axios.post('/workouts/new', {
             user,
             date,
             type,
