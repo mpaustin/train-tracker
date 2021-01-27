@@ -41,6 +41,9 @@
     "eject": "react-scripts eject",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
+  "engines": {
+    "node": "14.15.1"
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
