@@ -149,6 +149,7 @@ export const AddWorkout = (props) => {
             setSnackbarOpen(true);
             getWorkouts(user, token);
         }).catch(err => {
+            setSuccess(false);
             setSnackbarOpen(true);
             console.log('ERROR', err);
         });
