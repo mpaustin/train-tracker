@@ -112,6 +112,10 @@ app.get('/login', mw, async (req, res) => {
     return res.status(401).send();
 }); 
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('build'));
+}
+
 app.listen(port, () => {
     console.log(`Train Tracker listening on port ${port}`);
 })
