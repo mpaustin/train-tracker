@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import ToolBar from './components/ToolBar';
+import ToolBar from './components/Toolbar';
 import Content from './components/Content';
 import Footer from './components/Footer';
 import Box from '@material-ui/core/Box';
