@@ -6,14 +6,28 @@ const bodyParser = require('body-parser');
 const jwt = require('express-jwt');
 const jwtAuthz = require('express-jwt-authz');
 const jwksRsa = require('jwks-rsa');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const port = 3001;
+const port = process.env.PORT || 5000;
 
 // console.log('process env', process.env);
+
+// app.use(express.static(path.join(__dirname, '/build')));
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'client/build')));
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client/build', 'index.html'));  
+    })
+} else {
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
+    })
+}
+
 
 const checkJwt = jwt({
 
