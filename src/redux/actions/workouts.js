@@ -24,7 +24,7 @@ export const getWorkouts = (user, token) => async (dispatch) => {
 
     dispatch({ type: GET_WORKOUTS.request });
 
-    axios.get('/workouts', {
+    axios.get('https://mpa-train-tracker-server.herokuapp.com/workouts', {
         params: {
             user,
         },
