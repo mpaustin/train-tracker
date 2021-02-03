@@ -187,7 +187,6 @@ export const AddWorkout = (props) => {
                 getWorkouts(user.name, token);
             }
 
-            console.log('Refreshing workouts');
             refresh();
         }
     }
