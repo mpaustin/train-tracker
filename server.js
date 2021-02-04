@@ -1,5 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+
+const port = process.env.NODE_ENV || 3001;
 
 const app = express();
 app.use(cors());
@@ -12,4 +15,8 @@ app.get('*', function(_, res) {
       res.status(500).send(err)
     }
   })
+})
+
+app.listen(port, () => {
+    console.log(`Train Tracker (React) listening on port ${port}`);
 })
