@@ -22,12 +22,11 @@ function App() {
   const classes = useStyles();
   return (
     <div className="App">
-      TEST
-      {/* <Box height='100vh' width='100%' display='flex' flexDirection='column' justifyContent='space-between' >
+      <Box height='100vh' width='100%' display='flex' flexDirection='column' justifyContent='space-between' >
         <Box className={classes.theme} ><ToolBar/></Box>
         <Box className={classes.content}><Content/></Box>
         <Box className={classes.theme} ><Footer/></Box>
-      </Box> */}
+      </Box>
     </div>
   );
 }
