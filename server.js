@@ -17,6 +17,10 @@ app.get('*', function(_, res) {
   })
 })
 
+app.get('/.well-known/acme-challenge/:content', function(req, res) {
+  res.send('fAAYhg75OIeOiE_8JXX0Aod-e7AbKDjKsD_Y7NE_mf4.j_v_L8rrcyRQmuz522XRsY32cG0YFQz3QyeQ8nP2XEI')
+})
+
 app.listen(port, () => {
     console.log(`Train Tracker (React) listening on port ${port}`);
 })
