@@ -93,7 +93,6 @@ export const AddWorkout = (props) => {
                     scope: "read:workouts"
                 })
     
-                console.log('token', token)
                 addWorkout({
                     user: user.name,
                     date: wDate,
@@ -183,7 +182,6 @@ export const AddWorkout = (props) => {
                     scope: "read:workouts"
                 })
     
-                console.log('token', token)
                 getWorkouts(user.name, token);
             }
 

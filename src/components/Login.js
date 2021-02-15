@@ -24,11 +24,6 @@ export const Login = (props) => {
     const { logIn, loginFailed } = props;
     const classes = useStyles();
 
-    useEffect(() => {
-        // console.log('username', username);
-        // console.log('password', password);
-    });
-
     const handleSubmit = () => {
         logIn({
             username,

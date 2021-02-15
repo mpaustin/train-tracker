@@ -15,13 +15,6 @@ export const ADD_WORKOUT = {
 
 export const getWorkouts = (user, token) => async (dispatch) => {
 
-    // const { getAccessTokenSilently } = useAuth0();
-
-    // const token = await getAccessTokenSilently({
-    //     audience: "https://mpaustin.us.auth0.com/api/v2/",
-    //     scope: "read:workouts"
-    // })
-
     dispatch({ type: GET_WORKOUTS.request });
 
     axios.get('https://mpa-train-tracker-server.herokuapp.com/workouts', {

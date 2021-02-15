@@ -15,6 +15,10 @@ export const GET_WORKOUTS = {
     error: 'GET_WORKOUTS_ERROR',
 }
 
+/**
+ * 
+ * @deprecated (using Auth0 auth)
+ */
 export const logIn = ({
     username,
     password,
@@ -45,6 +49,9 @@ export const logIn = ({
 
 };
 
+/**
+ * @deprecated (using Auth0 auth)
+ */
 export const logOut = () => async (dispatch) => {
     dispatch({ type: LOG_OUT });
 };

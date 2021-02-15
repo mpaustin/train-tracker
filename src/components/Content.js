@@ -26,7 +26,6 @@ export const Content = (props) => {
                     scope: "read:workouts"
                 })
     
-                console.log('token', token)
                 getWorkouts(user.name, token);
             }
 
@@ -44,7 +43,6 @@ export const Content = (props) => {
     ];
 
     let rows = [];
-    console.log('mpa workouts', workouts)
     if (workouts) {
         workouts.forEach(workout => {
             let row = [

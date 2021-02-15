@@ -6,14 +6,6 @@ import { Link } from 'react-router-dom';
 import { logOut } from '../redux/actions/users';
 import { useAuth0 } from '@auth0/auth0-react';
 import LogoutButton from './LogoutButton';
-// import { makeStyles } from '@material-ui/core/styles';
-
-// const useStyles = makeStyles({
-//     toolbar: {
-//         backgroundColor: '#808080',
-        
-//     }
-// });
 
 export const ToolBar = (props) => {
     const { user, logOut } = props;
@@ -29,17 +21,10 @@ export const ToolBar = (props) => {
                     </Box>
                     {isAuthenticated ?
                     <Box>
-                        {/* <Button onClick={() => logOut()} >
-                            Log Out
-                        </Button> */}
                         <LogoutButton/>
                     </Box>
                     :
-                    <Box>
-                        {/* <Link to='/home'>
-                            Log In
-                        </Link> */}
-                    </Box>
+                    <Box/>
                     }
                 </Box>
             </Toolbar>
