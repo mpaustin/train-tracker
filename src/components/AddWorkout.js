@@ -63,10 +63,13 @@ export const AddWorkout = (props) => {
     const types = [
         'Weights',
         'Functional Fitness',
-        'Rowing',
-        'Run',
-        'Hockey',
         'Basketball',
+        'Hockey',
+        'Run',
+        'Rowing',
+        'Walk',
+        'Tennis',
+        'Sauna',
     ]
 
     const openDialog = () => {
