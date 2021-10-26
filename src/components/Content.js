@@ -11,10 +11,6 @@ import { getWorkouts } from '../redux/actions/workouts';
 
 export const Content = (props) => {
 
-    const { 
-        // user, 
-        workouts, loading, getWorkouts } = props;
-
     const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
 
     useEffect(() => {
