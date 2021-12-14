@@ -16,7 +16,7 @@ export const ToolBar = (props) => {
                 <Box width='100%' display='flex' flexDirection='row' alignItems='center' justifyContent='space-between'>
                     <Box>
                         <h2>
-                           Train Tracker 
+                           Workout Tracker 
                         </h2>
                     </Box>
                     {isAuthenticated ?
