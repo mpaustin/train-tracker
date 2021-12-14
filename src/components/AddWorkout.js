@@ -135,7 +135,7 @@ export const AddWorkout = (props) => {
         meditation,
         token,
     }) => {
-        axios.post('https://mpa-train-tracker-server.herokuapp.com/workouts/new', {
+        axios.post(process.env.API_URL + '/workouts/new', {
             user,
             date,
             type,
