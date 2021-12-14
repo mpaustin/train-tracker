@@ -17,7 +17,7 @@ export const getWorkouts = (user, token) => async (dispatch) => {
 
     dispatch({ type: GET_WORKOUTS.request });
 
-    axios.get(`${process.env.API_URL}/workouts`, {
+    axios.get(`${process.env.REACT_APP_API_URL}/workouts`, {
         params: {
             user,
         },
