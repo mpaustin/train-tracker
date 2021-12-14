@@ -1,6 +1,6 @@
-Train Tracker Client
+Workout Tracker Client
 
-Web Client for Train Tracker
+Web Client for Workout Tracker
 
 This app was created to help me track my workouts.  Previously I had just used a Google Sheets spreadsheet, but why let Google have all the fun.
  
