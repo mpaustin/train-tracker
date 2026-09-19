@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Table from './Table';
-import Login from './Login';
 import AddWorkout from './AddWorkout';
-import { Box, TableCell, Button, CircularProgress } from '@material-ui/core';
-import { BrowserRouter, Route, Link, Switch, Redirect } from "react-router-dom";
+import { Box, TableCell, CircularProgress } from '@material-ui/core';
+import { Route, Switch, Redirect } from "react-router-dom";
 import LoginButton from './LoginButton';
 import { useAuth0 } from '@auth0/auth0-react';
 import { getWorkouts } from '../redux/actions/workouts';
@@ -31,7 +30,7 @@ export const Content = (props) => {
 
             getUserWorkouts();
         }
-    }, [user]);
+    }, [user, isAuthenticated, getAccessTokenSilently, getWorkouts]);
     
 
     let columnTitles = [

@@ -1,12 +1,27 @@
-Workout Tracker Client
+# Train Tracker
 
-Web Client for Workout Tracker
+React frontend for logging and reviewing workouts through the Train Tracker API.
 
-This app was created to help me track my workouts.  Previously I had just used a Google Sheets spreadsheet, but why let Google have all the fun.
- 
-git clone https://github.com/mpaustin/train-tracker.git  
-cd train-tracker  
-npm i
-npm run start
+## Setup
 
-Feel free to play around and let me know what you think at mpaustin13@gmail.com or submit a PR at https://github.com/mpaustin/train-tracker.
+```sh
+npm install
+cp .env.example .env
+npm start
+```
+
+Set `REACT_APP_API_URL` to the API root. For local development with `train-tracker-server`, the default is:
+
+```sh
+REACT_APP_API_URL=http://localhost:5000
+```
+
+## Scripts
+
+```sh
+npm start
+npm test
+npm run build
+```
+
+This project uses an older Create React App stack, so the start/build scripts include `NODE_OPTIONS=--openssl-legacy-provider` for compatibility with newer Node versions.

@@ -34,10 +34,10 @@
     "redux-thunk": "^2.3.0",
     "underscore": "^1.13.1"
   },
-  "proxy": "https://localhost:5000",
+  "proxy": "http://localhost:5000",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

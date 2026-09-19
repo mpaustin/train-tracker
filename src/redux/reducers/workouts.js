@@ -1,5 +1,3 @@
-import react from 'react';
-
 import {
     GET_WORKOUTS,
 } from '../actions/workouts';

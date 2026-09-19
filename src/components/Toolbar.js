@@ -1,14 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Toolbar from '@material-ui/core/Toolbar';
-import { Box, Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Box } from '@material-ui/core';
 import { logOut } from '../redux/actions/users';
 import { useAuth0 } from '@auth0/auth0-react';
 import LogoutButton from './LogoutButton';
 
 export const ToolBar = (props) => {
-    const { user, logOut } = props;
     const { isAuthenticated } = useAuth0();
     return (
         <div>

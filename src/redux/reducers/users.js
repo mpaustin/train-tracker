@@ -1,6 +1,3 @@
-import { EmojiObjectsRounded } from '@material-ui/icons';
-import react from 'react';
-
 import {
     LOG_IN,
     LOG_OUT,

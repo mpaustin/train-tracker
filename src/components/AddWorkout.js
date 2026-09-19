@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import axios from 'axios';
 import { connect } from 'react-redux'
-import { Button, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText, TextField,
+import { Button, Dialog, DialogTitle, DialogActions, DialogContent, TextField,
     FormControl, FormControlLabel, RadioGroup, FormHelperText, Radio, FormLabel, Snackbar, Checkbox,
     Box, } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
@@ -31,7 +31,7 @@ export const AddWorkout = (props) => {
     const { 
         // user, 
         getWorkouts } = props;
-    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
@@ -82,11 +82,6 @@ export const AddWorkout = (props) => {
 
     const handleSubmit = () => {
         setOpen(false);
-        console.log('date', wDate);
-        console.log('type', wType);
-        console.log('desc', wDesc);
-        console.log('meditation', meditation);
-        console.log('sauna', sauna);
 
         if (isAuthenticated && user && user.name) {
 
@@ -172,6 +167,8 @@ export const AddWorkout = (props) => {
             case 'sauna':
                 setSauna(event.target.checked);
                 break;
+            default:
+                break;
         };
     }
 
@@ -205,7 +202,7 @@ export const AddWorkout = (props) => {
                         onChange={(e) => {setWDate(e.target.value)}}
                         fullWidth
                     />
-                    <FormControl component="fieldset" className='radio-button-section' className={classes.wType}>
+                    <FormControl component="fieldset" className={classes.wType}>
                         <FormLabel component="legend" color='inherit'>Type</FormLabel>
                         <RadioGroup name="Type" value={wType} onChange={(e) => {setWType(e.target.value)}}>
                             {buildWorkoutTypes()}

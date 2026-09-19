@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Box } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
@@ -17,7 +17,6 @@ const useStyles = makeStyles({
 
 export const Login = (props) => {
 
-    const [open, setOpen] = React.useState(true);
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
 
@@ -40,7 +39,7 @@ export const Login = (props) => {
     }
 
     const handleKeyPress = (e) => {
-        if (e.key == 'Enter' && !disableSubmit()) {
+        if (e.key === 'Enter' && !disableSubmit()) {
             handleSubmit();
         }
     }
